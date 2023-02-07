@@ -13,7 +13,7 @@ class m230206_082554_create_setting_table extends Migration{
 	 */
 	public function safeUp(){
 		$this->createTable('{{%setting}}', [
-			"key"   => $this->string()->notNull(),
+			"key"   => $this->string()->notNull()->notNull(),
 			'value' => $this->string()->notNull(),
 		]);
 	}

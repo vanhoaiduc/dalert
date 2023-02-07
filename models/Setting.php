@@ -31,6 +31,7 @@ class Setting extends ActiveRecord{
 		return array_merge(parent::rules(), [
 			[['key', 'value'], 'required'],
 			[['key', 'value'], 'string', 'max' => 255],
+			[['key'],'unique'],
 		]);
 	}
 
