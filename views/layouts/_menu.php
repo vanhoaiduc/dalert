@@ -13,6 +13,7 @@ echo Nav::widget([
 	'items'   => [
 		['label' => 'Home', 'url' => ['/site/index']],
 		['label' => 'Setting', 'url' => ['/setting/index']],
+		['label' => 'Due', 'url' => ['/due/index']],
 	]
 ]);
 NavBar::end();

@@ -1,5 +1,6 @@
 <?php
 
+use yii\i18n\Formatter;
 use yii\symfonymailer\Mailer;
 
 $params = require __DIR__ . '/params.php';
@@ -10,8 +11,8 @@ $config = [
 	'basePath'   => dirname(__DIR__),
 	'bootstrap'  => ['log'],
 	'aliases'    => [
-		'@bower'  => '@vendor/bower-asset',
-		'@npm'    => '@vendor/npm-asset',
+		'@bower' => '@vendor/bower-asset',
+		'@npm'   => '@vendor/npm-asset',
 	],
 	'components' => [
 		'request'      => [
@@ -44,6 +45,10 @@ $config = [
 			],
 		],
 		'db'           => $db,
+		'formatter'    => [
+			'class'      => Formatter::class,
+			'dateFormat' => 'yyyy/MM/dd',
+		]
 		/*
 		'urlManager' => [
 			'enablePrettyUrl' => true,
