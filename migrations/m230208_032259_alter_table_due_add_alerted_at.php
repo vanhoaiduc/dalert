@@ -13,7 +13,7 @@ class m230208_032259_alter_table_due_add_alerted_at extends Migration{
 	 */
 	public function safeUp(){
 		$this->addColumn(Due::tableName(), 'alerted_at', $this->integer());
-		$this->addColumn(Due::tableName(), 'email_list', $this->string());
+		$this->addColumn(Due::tableName(), 'email_list', $this->text());
 
 		return TRUE;
 	}
