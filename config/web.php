@@ -1,6 +1,6 @@
 <?php
 
-use yii\i18n\Formatter;
+use app\common\i18n\Formatter;
 use yii\symfonymailer\Mailer;
 
 $params = require __DIR__ . '/params.php';
@@ -46,8 +46,7 @@ $config = [
 		],
 		'db'           => $db,
 		'formatter'    => [
-			'class'      => Formatter::class,
-			'dateFormat' => 'yyyy/MM/dd',
+			'class' => Formatter::class,
 		]
 		/*
 		'urlManager' => [

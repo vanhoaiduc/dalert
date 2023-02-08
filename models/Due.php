@@ -20,8 +20,12 @@ use yii\db\BaseActiveRecord;
  * @property int|null $updated_at
  * @property int|null $created_by
  * @property int|null $updated_by
+ * @property int|null $alerted_at
+ * @property string|null $email_list
  */
 class Due extends ActiveRecord{
+
+	use DueGetterTrait;
 
 	/**
 	 * {@inheritdoc}
@@ -83,5 +87,4 @@ class Due extends ActiveRecord{
 			'updated_by'       => 'Updated By',
 		];
 	}
-
 }
