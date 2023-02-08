@@ -1,6 +1,8 @@
 <?php
 
 use app\common\bootstrap5\ActiveForm;
+use app\common\dictionaries\DueDictionary;
+use app\models\EmailSetting;
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
@@ -14,11 +16,12 @@ use yii\helpers\Html;
 
 	<?= $form->field($model, 'name')->textInput(['maxlength' => TRUE]) ?>
 
-	<?= $form->field($model, 'type')->textInput() ?>
+	<?= $form->field($model, 'type')
+	         ->dropDownList(DueDictionary::getList()) ?>
 
 	<?= $form->field($model, 'expired_at')->datePicker() ?>
 
-	<?= $form->field($model, 'setting_email_id')->textInput() ?>
+	<?= $form->field($model, 'setting_email_id')->dropDownList(EmailSetting::getList()) ?>
 
     <div class="form-group">
 		<?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

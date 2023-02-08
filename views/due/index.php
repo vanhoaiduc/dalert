@@ -1,8 +1,8 @@
 <?php
 
+use app\common\grid\ActionColumn;
+use app\common\grid\GridView;
 use app\models\Due;
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			'expired_at',
 			'setting_email_id:email',
 			[
-				'class'      => ActionColumn::className(),
+				'class'      => ActionColumn::class,
 				'urlCreator' => function ($action, Due $model, $key, $index, $column){
 					return Url::toRoute([$action, 'id' => $model->id]);
 				}

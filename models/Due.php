@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\common\db\ActiveRecord;
+use app\common\dictionaries\DueDictionary;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\db\BaseActiveRecord;
@@ -62,6 +63,7 @@ class Due extends ActiveRecord{
 			[['name', 'type', 'expired_at'], 'required'],
 			[['type', 'setting_email_id'], 'integer'],
 			[['name'], 'string', 'max' => 255],
+			[['type'], 'in', 'range' => DueDictionary::getListIds()],
 		], parent::rules());
 	}
 
