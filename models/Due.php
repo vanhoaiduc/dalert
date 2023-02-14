@@ -88,4 +88,15 @@ class Due extends ActiveRecord{
 			'updated_by'       => 'Updated By',
 		];
 	}
+
+	/**
+	 * @return $this
+	 */
+	public function markAlerted(){
+		$this->alerted        = DueDictionary::ALERTED;
+		$this->alerted_at     = time();
+		$this->alerted_emails = $this->settingEmail->value ?? NULL;
+
+		return $this;
+	}
 }

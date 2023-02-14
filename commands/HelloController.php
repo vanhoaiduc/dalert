@@ -7,6 +7,7 @@
 
 namespace app\commands;
 
+use app\common\App;
 use yii\console\Controller;
 use yii\console\ExitCode;
 
@@ -27,7 +28,12 @@ class HelloController extends Controller
 	 * @return int Exit code
 	 */
 	public function actionIndex($message = 'hello world'){
-		echo $message . "\n";
+
+		$mes  = App::getMailer()->compose('due_expired')
+		           ->setFrom('admin@example.com')
+		           ->setTo('bedarren@outlook.com');
+		$send = $mes->send();
+		var_dump($send);
 
 		return ExitCode::OK;
 	}

@@ -1,6 +1,7 @@
 <?php
 
 use app\common\i18n\Formatter;
+use yii\symfonymailer\Mailer;
 
 $params = require __DIR__ . '/params.php';
 $db     = require __DIR__ . '/db.php';
@@ -25,6 +26,17 @@ $config = [
 					'class'  => 'yii\log\FileTarget',
 					'levels' => ['error', 'warning'],
 				],
+			],
+		],
+		'mailer'    => [
+			'class'     => Mailer::class,
+			'transport' => [
+				'scheme'     => 'smtp',
+				'host'       => 'smtp.gmail.com',
+				'username'   => '',
+				'password'   => '',
+				'port'       => 587,
+				'encryption' => 'tls'
 			],
 		],
 		'db'        => $db,

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\common\dictionaries\DueDictionary;
+use app\common\helpers\StringHelper;
 use yii\db\ActiveQuery;
 
 /**
@@ -28,5 +29,10 @@ trait DueGetterTrait{
 	 */
 	public function getSettingEmail(){
 		return $this->hasOne(Setting::class, ['id' => 'setting_email_id']);
+	}
+
+	public function getAlertedEmails()
+	: array{
+		return StringHelper::explode($this->alerted_emails);
 	}
 }
