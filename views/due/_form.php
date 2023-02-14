@@ -17,7 +17,7 @@ use yii\helpers\Html;
 	<?= $form->field($model, 'name')->textInput(['maxlength' => TRUE]) ?>
 
 	<?= $form->field($model, 'type')
-	         ->dropDownList(DueDictionary::getList()) ?>
+	         ->dropDownList(DueDictionary::getTypeList()) ?>
 
 	<?= $form->field($model, 'expired_at')->datePicker() ?>
 

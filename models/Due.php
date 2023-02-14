@@ -20,8 +20,9 @@ use yii\db\BaseActiveRecord;
  * @property int|null $updated_at
  * @property int|null $created_by
  * @property int|null $updated_by
+ * @property int|null $alerted
  * @property int|null $alerted_at
- * @property string|null $email_list
+ * @property string|null $alerted_emails
  */
 class Due extends ActiveRecord{
 
@@ -67,7 +68,7 @@ class Due extends ActiveRecord{
 			[['name', 'type', 'expired_at'], 'required'],
 			[['type', 'setting_email_id'], 'integer'],
 			[['name'], 'string', 'max' => 255],
-			[['type'], 'in', 'range' => DueDictionary::getListIds()],
+			[['type'], 'in', 'range' => DueDictionary::getTypeListIds()],
 		], parent::rules());
 	}
 

@@ -4,6 +4,8 @@ namespace app\common;
 
 use app\common\i18n\Formatter;
 use Yii;
+use yii\db\Connection;
+use yii\mail\MailerInterface;
 
 /**
  *
@@ -23,6 +25,23 @@ class App{
 	public static function getFormatter()
 	: Formatter{
 		return self::get()->getFormatter();
+	}
+
+	/**
+	 * @return \yii\db\Connection
+	 */
+	public static function getDb()
+	: Connection{
+		return self::get()->getDb();
+	}
+
+	/**
+	 * @return \yii\mail\MailerInterface
+	 * @throws \yii\base\InvalidConfigException
+	 */
+	public static function getMailer()
+	: MailerInterface{
+		return self::get()->getMailer();
 	}
 
 }

@@ -19,6 +19,7 @@ class EmailSetting extends Setting{
 
 	/**
 	 * @return array|\yii\db\ActiveRecord[]
+	 * @throws \yii\base\InvalidConfigException
 	 */
 	public static function getList()
 	: array{

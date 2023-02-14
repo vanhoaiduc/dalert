@@ -12,8 +12,9 @@ class m230208_032259_alter_table_due_add_alerted_at extends Migration{
 	 * {@inheritdoc}
 	 */
 	public function safeUp(){
+		$this->addColumn(Due::tableName(), 'alerted', $this->tinyInteger());
 		$this->addColumn(Due::tableName(), 'alerted_at', $this->integer());
-		$this->addColumn(Due::tableName(), 'email_list', $this->text());
+		$this->addColumn(Due::tableName(), 'alerted_emails', $this->text());
 
 		return TRUE;
 	}
@@ -22,8 +23,9 @@ class m230208_032259_alter_table_due_add_alerted_at extends Migration{
 	 * {@inheritdoc}
 	 */
 	public function safeDown(){
+		$this->dropColumn(Due::tableName(), 'alerted');
 		$this->dropColumn(Due::tableName(), 'alerted_at');
-		$this->dropColumn(Due::tableName(), 'email_list');
+		$this->dropColumn(Due::tableName(), 'alerted_emails');
 
 		return TRUE;
 	}

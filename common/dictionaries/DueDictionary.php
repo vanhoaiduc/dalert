@@ -11,10 +11,14 @@ class DueDictionary{
 
 	public const TYPE_SSL = 2;
 
+	public const NOT_ALERT = NULL;
+
+	public const ALERTED = 1;
+
 	/**
 	 * @return array
 	 */
-	public static function getList()
+	public static function getTypeList()
 	: array{
 		return [
 			self::TYPE_DOMAIN => 'Domain',
@@ -25,8 +29,8 @@ class DueDictionary{
 	/**
 	 * @return int[]
 	 */
-	public static function getListIds()
+	public static function getTypeListIds()
 	: array{
-		return array_keys(self::getList());
+		return array_keys(self::getTypeList());
 	}
 }
