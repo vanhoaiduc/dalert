@@ -18,4 +18,15 @@ class DateHelper{
 	: int{
 		return strtotime(date(App::getFormatter()->dateFormat));
 	}
+
+	/**
+	 * @param $time
+	 *
+	 * @return string|null
+	 * @throws \yii\base\InvalidConfigException
+	 */
+	public static function asDate($time)
+	: ?string{
+		return App::getFormatter()->asDate($time);
+	}
 }

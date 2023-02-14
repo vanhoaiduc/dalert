@@ -3,9 +3,9 @@
 namespace app\common;
 
 use app\common\i18n\Formatter;
+use app\common\symfonymailer\Mailer;
 use Yii;
 use yii\db\Connection;
-use yii\mail\MailerInterface;
 
 /**
  *
@@ -36,11 +36,11 @@ class App{
 	}
 
 	/**
-	 * @return \yii\mail\MailerInterface
+	 * @return \app\common\symfonymailer\Mailer
 	 * @throws \yii\base\InvalidConfigException
 	 */
 	public static function getMailer()
-	: MailerInterface{
+	: Mailer{
 		return self::get()->getMailer();
 	}
 

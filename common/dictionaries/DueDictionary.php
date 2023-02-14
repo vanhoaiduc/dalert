@@ -33,4 +33,14 @@ class DueDictionary{
 	: array{
 		return array_keys(self::getTypeList());
 	}
+
+	/**
+	 * @param $type_id
+	 *
+	 * @return string
+	 */
+	public static function getTypeName($type_id)
+	: string{
+		return self::getTypeList()[$type_id] ?? 'Unknown';
+	}
 }

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\common\dictionaries\DueDictionary;
+use app\common\helpers\DateHelper;
 use app\common\helpers\StringHelper;
 use yii\db\ActiveQuery;
 
@@ -34,5 +35,39 @@ trait DueGetterTrait{
 	public function getAlertedEmails()
 	: array{
 		return StringHelper::explode($this->alerted_emails);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTypeName()
+	: string{
+		return DueDictionary::getTypeName($this->type);
+	}
+
+	/**
+	 * @return string|null
+	 * @throws \yii\base\InvalidConfigException
+	 */
+	public function getExpiredDate()
+	: ?string{
+		return DateHelper::asDate($this->expired_at);
+	}
+
+	/**
+	 * @return string
+	 * @throws \yii\base\InvalidConfigException
+	 */
+	public function getEmailSubject()
+	: string{
+		return "{$this->getTypeName()} - $this->name will expired at {$this->getExpiredDate()}";
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getEmailView()
+	: string{
+		return 'due_expired';
 	}
 }

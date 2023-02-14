@@ -6,6 +6,9 @@ use app\common\App;
 use app\common\controllers\ConsoleController;
 use app\models\Due;
 
+/**
+ *
+ */
 class ScheduleController extends ConsoleController{
 
 	/**
@@ -18,8 +21,7 @@ class ScheduleController extends ConsoleController{
 		/** @var Due[] $dues */
 		$dues = Due::findExpired()->limit($limit)->joinWith(['settingEmail'])->each();
 		foreach ($dues as $due){
-			$saved = $due->markAlerted()->save();
-			if (!$saved){
+			if (!$due->markAlerted()->save()){
 				// TODO set log
 				continue;
 			}
@@ -28,7 +30,9 @@ class ScheduleController extends ConsoleController{
 				continue;
 			}
 
-			App::getMailer()->compose('text')->setTo($due->getAlertedEmails());
+			$email = App::getMailer()->compose($due->getEmailView());
+			$email->setSubject($due->getEmailSubject());
+			$email->setTo($due->getAlertedEmails())->send();
 		}
 	}
 }
