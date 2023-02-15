@@ -66,7 +66,7 @@ class DueSearch extends Due{
 		]);
 
 		$query->andFilterWhere(['like', 'name', $this->name]);
-		$query->orderBy(['expired_at' => SORT_DESC]);
+		$query->orderBy(['expired_at' => SORT_ASC]);
 
 		return $dataProvider;
 	}

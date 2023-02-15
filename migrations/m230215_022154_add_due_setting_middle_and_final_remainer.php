@@ -12,7 +12,7 @@ use yii\helpers\Json;
 class m230215_022154_add_due_setting_middle_and_final_remainer extends Migration{
 
 	public array $settings = [
-		SettingDictionary::EXPIRED_REMAINER_DAY_FIRST  => 28,
+		SettingDictionary::EXPIRED_REMAINER_DAY_FIRST  => 30,
 		SettingDictionary::EXPIRED_REMAINER_DAY_SECOND => 7,
 		SettingDictionary::EXPIRED_REMAINER_DAY_THIRD  => 1,
 	];

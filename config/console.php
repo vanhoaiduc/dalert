@@ -1,12 +1,13 @@
 <?php
 
 use app\common\i18n\Formatter;
+use yii\helpers\ArrayHelper;
 
 $params       = require __DIR__ . '/params.php';
 $db           = require __DIR__ . '/db.php';
 $config_local = require __DIR__ . '/console-local.php';
 
-$config = array_merge([
+$config = ArrayHelper::merge([
 	'id'                  => 'basic-console',
 	'basePath'            => dirname(__DIR__),
 	'bootstrap'           => ['log'],

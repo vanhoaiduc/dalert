@@ -6,6 +6,7 @@
 /** @var bool $enable_action */
 
 use app\common\grid\ActionColumn;
+use app\common\grid\ExpiredColumn;
 use app\common\grid\GridView;
 use app\models\Due;
 use yii\helpers\Url;
@@ -14,7 +15,10 @@ $columns = [
 	['class' => 'yii\grid\SerialColumn'],
 	'name',
 	'typeName',
-	'expired_at',
+	[
+		'class'     => ExpiredColumn::class,
+		'attribute' => 'expired_at',
+	],
 	'settingEmail.value',
 ];
 

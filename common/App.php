@@ -44,4 +44,17 @@ class App{
 		return self::get()->getMailer();
 	}
 
+	/**
+	 * @param $key
+	 *
+	 * @return array|mixed|null
+	 */
+	public static function getParams($key = NULL){
+		if ($key === NULL){
+			return self::get()->params;
+		}
+
+		return self::get()->params[$key] ?? NULL;
+	}
+
 }
