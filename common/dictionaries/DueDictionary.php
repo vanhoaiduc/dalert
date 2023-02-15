@@ -15,6 +15,12 @@ class DueDictionary{
 
 	public const ALERTED = 1;
 
+	public const ALERTED_FIRST = 1;
+
+	public const ALERTED_SECOND = 2;
+
+	public const ALERTED_THIRD = 4;
+
 	/**
 	 * @return array
 	 */

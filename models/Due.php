@@ -28,6 +28,7 @@ use yii\db\BaseActiveRecord;
 class Due extends ActiveRecord{
 
 	use DueGetterTrait;
+	use DueAlertedStatusTrait;
 
 	/**
 	 * {@inheritdoc}
@@ -92,16 +93,5 @@ class Due extends ActiveRecord{
 			'created_by'       => 'Created By',
 			'updated_by'       => 'Updated By',
 		];
-	}
-
-	/**
-	 * @return $this
-	 */
-	public function markAlerted(){
-		$this->alerted        = DueDictionary::ALERTED;
-		$this->alerted_at     = time();
-		$this->alerted_emails = $this->settingEmail->value ?? NULL;
-
-		return $this;
 	}
 }

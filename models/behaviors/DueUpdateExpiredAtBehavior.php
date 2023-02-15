@@ -12,6 +12,8 @@ use app\common\dictionaries\DueDictionary;
  */
 class DueUpdateExpiredAtBehavior extends Behavior{
 
+
+	/** @inheritDoc */
 	public function events(){
 		return [
 			ActiveRecord::EVENT_BEFORE_UPDATE => 'beforeUpdateCleartAlertedStatus',
@@ -19,12 +21,12 @@ class DueUpdateExpiredAtBehavior extends Behavior{
 	}
 
 	/**
-	 * @param $event
+	 * @param \yii\db\AfterSaveEvent $event
 	 *
 	 * @return void
 	 */
 	public function beforeUpdateCleartAlertedStatus($event){
-		if (!$this->owner->isAttributeChanged('expired_at')){
+		if (!$this->isAttributeChanged('expired_at')){
 			return;
 		}
 

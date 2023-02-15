@@ -25,4 +25,17 @@ class Behavior extends \yii\base\Behavior{
 	: string{
 		return static::class;
 	}
+
+	/**
+	 * @param $attribute
+	 *
+	 * @return bool
+	 */
+	public function isAttributeChanged($attribute)
+	: bool{
+		$old_attribute     = $this->owner->getOldAttribute($attribute);
+		$current_attribute = $this->owner->{$attribute};
+
+		return $old_attribute != $current_attribute;
+	}
 }

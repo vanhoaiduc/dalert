@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\common\dictionaries\DueDictionary;
+use app\common\dictionaries\SettingDictionary;
 use app\common\helpers\DateHelper;
 use app\common\helpers\StringHelper;
 use yii\db\ActiveQuery;
@@ -19,8 +20,20 @@ trait DueGetterTrait{
 	public static function findExpired()
 	: ActiveQuery{
 		$query = self::find();
-		$query->andWhere(['>', 'expired_at', Setting::getDueExpiredThreshold()]);
-		$query->andWhere(['alerted' => DueDictionary::NOT_ALERT]);
+		$query->orWhere(['AND',
+			['>', 'expired_at', Setting::getTimeThreshold(SettingDictionary::EXPIRED_REMAINER_DAY_FIRST)],
+			['alerted' => DueDictionary::NOT_ALERT],
+		]);
+
+		$query->orWhere(['AND',
+			['>', 'expired_at', Setting::getTimeThreshold(SettingDictionary::EXPIRED_REMAINER_DAY_SECOND)],
+			['alerted' => DueDictionary::ALERTED_FIRST],
+		]);
+
+		$query->orWhere(['AND',
+			['>', 'expired_at', Setting::getTimeThreshold(SettingDictionary::EXPIRED_REMAINER_DAY_THIRD)],
+			['alerted' => DueDictionary::ALERTED_FIRST | DueDictionary::ALERTED_SECOND],
+		]);
 
 		return $query;
 	}
