@@ -1,12 +1,12 @@
 <?php
 
 use app\common\i18n\Formatter;
-use app\common\symfonymailer\Mailer;
 
-$params = require __DIR__ . '/params.php';
-$db     = require __DIR__ . '/db.php';
+$params       = require __DIR__ . '/params.php';
+$db           = require __DIR__ . '/db.php';
+$config_local = require __DIR__ . '/console-local.php';
 
-$config = [
+$config = array_merge($config_local, [
 	'id'                  => 'basic-console',
 	'basePath'            => dirname(__DIR__),
 	'bootstrap'           => ['log'],
@@ -28,18 +28,6 @@ $config = [
 				],
 			],
 		],
-		'mailer'    => [
-			'class'     => Mailer::class,
-			'sender'    => ['admin@admin.com' => 'dAlert'],
-			'transport' => [
-				'scheme'     => 'smtp',
-				'host'       => 'smtp.gmail.com',
-				'username'   => '',
-				'password'   => '',
-				'port'       => 587,
-				'encryption' => 'tls'
-			],
-		],
 		'db'        => $db,
 		'formatter' => [
 			'class' => Formatter::class,
@@ -53,7 +41,7 @@ $config = [
 		],
 	],
 	*/
-];
+]);
 
 if (YII_ENV_DEV){
 	// configuration adjustments for 'dev' environment
