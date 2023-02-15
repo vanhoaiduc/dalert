@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\common\db\ActiveRecord;
 use app\common\dictionaries\DueDictionary;
+use app\models\behaviors\DueUpdateExpiredAtBehavior;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\db\BaseActiveRecord;
@@ -37,7 +38,7 @@ class Due extends ActiveRecord{
 
 	/** @inheritDoc */
 	public function behaviors(){
-		return [
+		$behaviors = [
 			[
 				'class'      => AttributeBehavior::class,
 				'attributes' => [
@@ -58,6 +59,10 @@ class Due extends ActiveRecord{
 				},
 			],
 		];
+
+		DueUpdateExpiredAtBehavior::register($behaviors);
+
+		return $behaviors;
 	}
 
 	/**
