@@ -40,15 +40,7 @@ $config = [
 		'db'           => $db,
 		'formatter'    => [
 			'class' => Formatter::class,
-		]
-		/*
-		'urlManager' => [
-			'enablePrettyUrl' => true,
-			'showScriptName' => false,
-			'rules' => [
-			],
 		],
-		*/
 	],
 	'params'     => $params,
 ];
