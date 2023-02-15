@@ -1,6 +1,6 @@
 <?php
 
-$db_local = $db = require __DIR__ . '/db-local.php';
+$db_local = require __DIR__ . '/db-local.php';
 
 return array_merge($db_local, [
 	'class'    => 'yii\db\Connection',

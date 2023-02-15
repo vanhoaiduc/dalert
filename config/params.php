@@ -1,4 +1,5 @@
 <?php
+$db_local = require __DIR__ . '/params-local.php';
 
 return [
 	'adminEmail'  => 'admin@example.com',
