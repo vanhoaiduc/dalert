@@ -38,3 +38,4 @@ tests/_support/_generated
 #config
 /config/db-local.php
 /config/console-local.php
+/config/params-local.php
