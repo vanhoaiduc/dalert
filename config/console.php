@@ -6,7 +6,7 @@ $params       = require __DIR__ . '/params.php';
 $db           = require __DIR__ . '/db.php';
 $config_local = require __DIR__ . '/console-local.php';
 
-$config = array_merge($config_local, [
+$config = array_merge([
 	'id'                  => 'basic-console',
 	'basePath'            => dirname(__DIR__),
 	'bootstrap'           => ['log'],
@@ -34,14 +34,7 @@ $config = array_merge($config_local, [
 		],
 	],
 	'params'              => $params,
-	/*
-	'controllerMap' => [
-		'fixture' => [ // Fixture generation command line.
-			'class' => 'yii\faker\FixtureController',
-		],
-	],
-	*/
-]);
+], $config_local);
 
 if (YII_ENV_DEV){
 	// configuration adjustments for 'dev' environment

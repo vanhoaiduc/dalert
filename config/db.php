@@ -2,7 +2,7 @@
 
 $db_local = require __DIR__ . '/db-local.php';
 
-return array_merge($db_local, [
+return array_merge([
 	'class'    => 'yii\db\Connection',
 	'dsn'      => 'mysql:host=localhost;dbname=localhost',
 	'username' => '',
@@ -13,4 +13,4 @@ return array_merge($db_local, [
 	//'enableSchemaCache' => true,
 	//'schemaCacheDuration' => 60,
 	//'schemaCache' => 'cache',
-]);
+], $db_local);
