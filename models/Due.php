@@ -40,7 +40,7 @@ class Due extends ActiveRecord{
 	/** @inheritDoc */
 	public function behaviors(){
 		$behaviors = [
-			[
+			'attrBeforeSave' => [
 				'class'      => AttributeBehavior::class,
 				'attributes' => [
 					BaseActiveRecord::EVENT_BEFORE_INSERT => 'expired_at',
@@ -48,15 +48,6 @@ class Due extends ActiveRecord{
 				],
 				'value'      => function ($event){
 					return Yii::$app->getFormatter()->asTimestamp($this->expired_at);
-				},
-			],
-			[
-				'class'      => AttributeBehavior::class,
-				'attributes' => [
-					BaseActiveRecord::EVENT_AFTER_FIND => 'expired_at',
-				],
-				'value'      => function ($event){
-					return Yii::$app->getFormatter()->asDate($this->expired_at);
 				},
 			],
 		];
@@ -83,15 +74,17 @@ class Due extends ActiveRecord{
 	 */
 	public function attributeLabels(){
 		return [
-			'id'               => 'ID',
-			'name'             => 'Name',
-			'type'             => 'Type',
-			'expired_at'       => 'Expired At',
-			'setting_email_id' => 'Setting Email',
-			'created_at'       => 'Created At',
-			'updated_at'       => 'Updated At',
-			'created_by'       => 'Created By',
-			'updated_by'       => 'Updated By',
+			'id'                 => 'ID',
+			'name'               => 'Name',
+			'type'               => 'Type',
+			'typeName'           => 'Type',
+			'expired_at'         => 'Expired At',
+			'setting_email_id'   => 'Setting Email',
+			'settingEmail.value' => 'Setting Email',
+			'created_at'         => 'Created At',
+			'updated_at'         => 'Updated At',
+			'created_by'         => 'Created By',
+			'updated_by'         => 'Updated By',
 		];
 	}
 }

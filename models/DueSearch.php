@@ -34,6 +34,7 @@ class DueSearch extends Due{
 	 * @param array $params
 	 *
 	 * @return ActiveDataProvider
+	 * @throws \yii\base\InvalidConfigException
 	 */
 	public function search($params){
 		$query = Due::find();
@@ -65,6 +66,7 @@ class DueSearch extends Due{
 		]);
 
 		$query->andFilterWhere(['like', 'name', $this->name]);
+		$query->orderBy(['expired_at' => SORT_DESC]);
 
 		return $dataProvider;
 	}

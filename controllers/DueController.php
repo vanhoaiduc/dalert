@@ -34,14 +34,16 @@ class DueController extends WebController{
 	 * Lists all Due models.
 	 *
 	 * @return string
+	 * @throws \yii\base\InvalidConfigException
 	 */
 	public function actionIndex(){
 		$searchModel  = new DueSearch();
 		$dataProvider = $searchModel->search($this->request->queryParams);
 
 		return $this->render('index', [
-			'searchModel'  => $searchModel,
-			'dataProvider' => $dataProvider,
+			'searchModel'   => $searchModel,
+			'dataProvider'  => $dataProvider,
+			'enable_action' => TRUE,
 		]);
 	}
 

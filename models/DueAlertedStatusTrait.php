@@ -4,7 +4,6 @@ namespace app\models;
 
 use app\common\dictionaries\DueDictionary;
 use app\common\helpers\NumberHelper;
-use app\models\behaviors\DueUpdateExpiredAtBehavior;
 
 /**
  * @property int|null $alerted
@@ -16,7 +15,7 @@ trait DueAlertedStatusTrait{
 	 */
 	public function markAlerted()
 	: self{
-		$this->detachBehavior(DueUpdateExpiredAtBehavior::getName());
+		$this->detachBehaviors();
 		$this->alerted        = $this->getNextAlertedStatus();
 		$this->alerted_at     = time();
 		$this->alerted_emails = $this->settingEmail->value ?? NULL;
@@ -33,15 +32,36 @@ trait DueAlertedStatusTrait{
 			return DueDictionary::ALERTED_FIRST;
 		}
 
-		if (!$this->hasAlertedStatus(DueDictionary::ALERTED_SECOND)){
+		if (!$this->hasSecondAlert()){
 			return $this->alerted | DueDictionary::ALERTED_SECOND;
 		}
 
-		if (!$this->hasAlertedStatus(DueDictionary::ALERTED_THIRD)){
+		if (!$this->hasThirdAlert()){
 			return $this->alerted | DueDictionary::ALERTED_THIRD;
 		}
 
 		return $this->alerted;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function hasFirstAlert(){
+		return $this->hasAlertedStatus(DueDictionary::ALERTED_FIRST);
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function hasSecondAlert(){
+		return $this->hasAlertedStatus(DueDictionary::ALERTED_SECOND);
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function hasThirdAlert(){
+		return $this->hasAlertedStatus(DueDictionary::ALERTED_THIRD);
 	}
 
 	/**
@@ -52,6 +72,5 @@ trait DueAlertedStatusTrait{
 	private function hasAlertedStatus($status_to_check)
 	: bool{
 		return NumberHelper::isBitSet($this->alerted, $status_to_check);
-
 	}
 }

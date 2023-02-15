@@ -21,17 +21,17 @@ trait DueGetterTrait{
 	: ActiveQuery{
 		$query = self::find();
 		$query->orWhere(['AND',
-			['>', 'expired_at', Setting::getTimeThreshold(SettingDictionary::EXPIRED_REMAINER_DAY_FIRST)],
+			['<', 'expired_at', self::getFirstRemainerTime()],
 			['alerted' => DueDictionary::NOT_ALERT],
 		]);
 
 		$query->orWhere(['AND',
-			['>', 'expired_at', Setting::getTimeThreshold(SettingDictionary::EXPIRED_REMAINER_DAY_SECOND)],
+			['<', 'expired_at', self::getSecondRemainerTime()],
 			['alerted' => DueDictionary::ALERTED_FIRST],
 		]);
 
 		$query->orWhere(['AND',
-			['>', 'expired_at', Setting::getTimeThreshold(SettingDictionary::EXPIRED_REMAINER_DAY_THIRD)],
+			['<', 'expired_at', self::getThirdRemainerTime()],
 			['alerted' => DueDictionary::ALERTED_FIRST | DueDictionary::ALERTED_SECOND],
 		]);
 
@@ -83,4 +83,29 @@ trait DueGetterTrait{
 	: string{
 		return 'due_expired';
 	}
+
+	/**
+	 * @return int
+	 * @throws \yii\base\InvalidConfigException
+	 */
+	public static function getFirstRemainerTime(){
+		return Setting::getTimeThreshold(SettingDictionary::EXPIRED_REMAINER_DAY_FIRST);
+	}
+
+	/**
+	 * @return int
+	 * @throws \yii\base\InvalidConfigException
+	 */
+	public static function getSecondRemainerTime(){
+		return Setting::getTimeThreshold(SettingDictionary::EXPIRED_REMAINER_DAY_SECOND);
+	}
+
+	/**
+	 * @return int
+	 * @throws \yii\base\InvalidConfigException
+	 */
+	public static function getThirdRemainerTime(){
+		return Setting::getTimeThreshold(SettingDictionary::EXPIRED_REMAINER_DAY_THIRD);
+	}
+
 }

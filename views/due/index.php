@@ -1,14 +1,11 @@
 <?php
 
-use app\common\grid\ActionColumn;
-use app\common\grid\GridView;
-use app\models\Due;
 use yii\helpers\Html;
-use yii\helpers\Url;
 
 /** @var yii\web\View $this */
 /** @var app\models\DueSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
+/** @var bool $enable_action */
 
 $this->title                   = 'Dues';
 $this->params['breadcrumbs'][] = $this->title;
@@ -21,27 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
 		<?= Html::a('Create Due', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-	<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-	<?= GridView::widget([
-		'dataProvider' => $dataProvider,
-		'filterModel'  => $searchModel,
-		'columns'      => [
-			['class' => 'yii\grid\SerialColumn'],
-
-			'id',
-			'name',
-			'type',
-			'expired_at',
-			'setting_email_id:email',
-			[
-				'class'      => ActionColumn::class,
-				'urlCreator' => function ($action, Due $model, $key, $index, $column){
-					return Url::toRoute([$action, 'id' => $model->id]);
-				}
-			],
-		],
-	]); ?>
+	<?= $this->render('/_shared/due_grid',
+		compact(['searchModel', 'dataProvider', 'enable_action'])) ?>
 
 
 </div>
