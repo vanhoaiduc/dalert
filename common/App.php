@@ -5,6 +5,7 @@ namespace app\common;
 use app\common\i18n\Formatter;
 use app\common\symfonymailer\Mailer;
 use Yii;
+use yii\console\Application;
 use yii\db\Connection;
 
 /**
@@ -55,6 +56,13 @@ class App{
 		}
 
 		return self::get()->params[$key] ?? NULL;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public static function isConsole(){
+		return self::get() instanceof Application;
 	}
 
 }

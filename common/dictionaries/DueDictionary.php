@@ -11,6 +11,8 @@ class DueDictionary{
 
 	public const TYPE_SSL = 2;
 
+	public const TYPE_RESERVED_INSTANCE = 4;
+
 	public const NOT_ALERT = NULL;
 
 	public const ALERTED = 1;
@@ -27,8 +29,9 @@ class DueDictionary{
 	public static function getTypeList()
 	: array{
 		return [
-			self::TYPE_DOMAIN => 'Domain',
-			self::TYPE_SSL    => 'SSL',
+			self::TYPE_DOMAIN            => 'Domain',
+			self::TYPE_SSL               => 'SSL',
+			self::TYPE_RESERVED_INSTANCE => 'Reserved Instance',
 		];
 	}
 

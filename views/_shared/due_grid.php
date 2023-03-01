@@ -5,6 +5,7 @@
 
 /** @var bool $enable_action */
 
+use app\common\bootstrap5\Html;
 use app\common\grid\ActionColumn;
 use app\common\grid\ExpiredColumn;
 use app\common\grid\GridView;
@@ -19,7 +20,21 @@ $columns = [
 		'class'     => ExpiredColumn::class,
 		'attribute' => 'expired_at',
 	],
-	'settingEmail.value',
+	[
+		'attribute'     => 'settingEmail.value',
+		'headerOptions' => ['style' => ['width' => '60%']],
+		'format'        => 'html',
+		'value'         => static function ($model){
+			return Html::tag('div', $model->settingEmail->value, [
+				'style' => [
+					'height' => '50px'
+				],
+				'class' => [
+					'overflow-auto'
+				]
+			]);
+		}
+	]
 ];
 
 if ($enable_action){
@@ -35,5 +50,5 @@ echo GridView::widget([
 	'dataProvider'      => $dataProvider,
 	'filterModel'       => $searchModel ?? NULL,
 	'timestamp_columns' => ['expired_at'],
-	'columns'           => $columns
+	'columns'           => $columns,
 ]);

@@ -12,11 +12,17 @@ class DateHelper{
 	public const UNIX_DAY = 86400;
 
 	/**
-	 * @return int
+	 * @param null $format
+	 *
+	 * @return string
 	 */
-	public static function currentDateTimestamp()
-	: int{
-		return strtotime(date(App::getFormatter()->dateFormat));
+	public static function currentDate($format = NULL)
+	: string{
+		if ($format === NULL){
+			$format = App::getFormatter()->dateFormat;
+		}
+
+		return date($format);
 	}
 
 	/**

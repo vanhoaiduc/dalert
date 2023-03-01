@@ -3,6 +3,7 @@
 namespace app\common\bootstrap5;
 
 use app\common\App;
+use app\common\helpers\DateHelper;
 use kartik\date\DatePicker;
 
 /**
@@ -15,7 +16,10 @@ class ActiveField extends \yii\bootstrap5\ActiveField{
 	 * @throws \Exception
 	 */
 	public function datePicker(){
-		$value = App::getFormatter()->asDate($this->model->{$this->attribute});
+		$init_val = $this->model->{$this->attribute};
+		$value    = $init_val
+			? App::getFormatter()->asDate($init_val)
+			: DateHelper::currentDate('Y/m/d');
 
 		return $this->widget(DatePicker::class, [
 			'type'          => DatePicker::TYPE_INPUT,
