@@ -11,6 +11,9 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
 
+/**
+ *
+ */
 class SiteController extends Controller{
 
 	/**
@@ -62,6 +65,7 @@ class SiteController extends Controller{
 	public function actionIndex(){
 		$searchModel  = new DueSearch();
 		$dataProvider = $searchModel->search($this->request->queryParams);
+		$dataProvider->setPagination(FALSE);
 
 		return $this->render('index', [
 			'searchModel'   => $searchModel,

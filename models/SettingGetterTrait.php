@@ -19,8 +19,7 @@ trait SettingGetterTrait{
 		               ->andWhere(['key' => $key])
 		               ->select(['value'])
 		               ->scalar();
-		++ $num_day;
 
-		return strtotime("+{$num_day} days");
+		return strtotime("+$num_day days");
 	}
 }
